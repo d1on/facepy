@@ -110,7 +110,6 @@ class SignedRequest(object):
                 from = psr['credits'].get('from')
                 to = psr['credits'].get('to')
                 amount = psr['credits'].get('amount')
-                application = psr['credits'].get('application')
                 application = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits']
                 country = psr['credits'].get('country')
                 created_time = psr['credits'].get('created_time')
