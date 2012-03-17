@@ -98,6 +98,25 @@ class SignedRequest(object):
                 is_admin = psr['page']['admin']
             ) if 'page' in psr else None,
 
+            # Populate page data
+            credits = cls.Credits(
+                buyer = psr['credits'].get('buyer')
+                receiver = psr['credits'].get('receiver')
+                order_id = psr['credits'].get('order_id')
+                order_info = psr['credits'].get('order_info')
+                order_details = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits']
+                status = psr['credits'].get('status')
+                id = psr['credits'].get('id')
+                from = psr['credits'].get('from')
+                to = psr['credits'].get('to')
+                amount = psr['credits'].get('amount')
+                application = psr['credits'].get('application')
+                application = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits']
+                country = psr['credits'].get('country')
+                created_time = psr['credits'].get('created_time')
+                updated_time = psr['credits'].get('updated_time')
+            ) if 'credits' in psr else None,
+
             # Populate miscellaneous data
             data = psr.get('app_data', None)
         )
@@ -176,6 +195,74 @@ class SignedRequest(object):
             'signature': encoded_signature,
             'payload': encoded_payload
         }
+
+    class Credits(object):
+        """
+        A ``Credits` instance represents a Facebook Credits callback request.
+        """
+
+        buyer = None
+        """An integer describing the UID of the buyer"""
+
+        receiver = None
+        """An integer describing the UID of the receiver"""
+
+        order_id = None
+        """An 64 bit Facebook order id"""
+
+        order_info = None
+        """The string containing the order information passed when FB.ui is invoked"""
+
+        order_details = None
+        """A dict describing the order details"""
+
+        status = None
+        """A string describing the order status"""
+
+        # Dispute / Refund fields
+        id = None
+        """An integer describing the id of the order"""
+
+        from = None
+        """An integer describing the UID of the buyer"""
+
+        to = None
+        """An integer describing the UID of the receiver"""
+
+        amount = None
+        """An integer describing the refund amount"""
+
+        application = None
+        """An dict describing application"""
+
+        country = None
+        """An string describing country of the buyer"""
+
+        created_time = None
+        """An string describing the creation time of the issue"""
+
+        updated_time = None
+        """An string describing the update time of the issue"""
+
+        def __init__(self, buyer=None, receiver=None, order_id=None,
+                     order_info=None, order_details=None, status=None,
+                     id=None, from=None, to=None, amount=None, 
+                     application=None, country=None, created_time=None, 
+                     updated_time=None):
+            self.buyer = buyer
+            self.receiver = receiver
+            self.order_id = order_id
+            self.order_info = order_info
+            self.order_details = order_details
+            self.status = status
+            self.id = id
+            self.from = from
+            self.to = to
+            self.amount = amount
+            self.application = application
+            self.country = country
+            self.created_time = created_time
+            self.updated_time = updated_time
 
     class Page(object):
         """
