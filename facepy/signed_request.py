@@ -29,7 +29,7 @@ class SignedRequest(object):
     page = None
     """A ``SignedRequest.Page`` instance describing the Facebook page that the signed request was generated from."""
 
-    def __init__(self, user, data=None, page=None, oauth_token=None):
+    def __init__(self, user, data=None, page=None, credits=None, oauth_token=None):
         """Initialize an instance from arbitrary data."""
 
         if oauth_token and not user:
@@ -50,6 +50,7 @@ class SignedRequest(object):
 
         self.data = data
         self.page = page
+        self.credits = credits
 
     def parse(cls, signed_request, application_secret_key):
         """Initialize an instance from a signed request."""
