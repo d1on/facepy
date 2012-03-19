@@ -117,7 +117,9 @@ class SignedRequest(object):
                 application = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits'] else None,
                 country = psr['credits'].get('country'),
                 created_time = psr['credits'].get('created_time'),
-                updated_time = psr['credits'].get('updated_time')
+                updated_time = psr['credits'].get('updated_time'),
+                error_code = psr['credits'].get('error_code'),
+                error_message = psr['credits'].get('error_message'),
             ) if 'credits' in psr else None,
 
             # Populate miscellaneous data
@@ -247,11 +249,17 @@ class SignedRequest(object):
         updated_time = None
         """An string describing the update time of the issue"""
 
+        error_code = None
+        """A Facebook error code"""
+
+        error_message = None
+        """The string describing the error"""
+
         def __init__(self, buyer=None, receiver=None, order_id=None,
                      order_info=None, order_details=None, status=None,
                      id=None, fromm=None, to=None, amount=None, 
                      application=None, country=None, created_time=None, 
-                     updated_time=None):
+                     updated_time=None, error_code=None, error_message=None):
             self.buyer = buyer
             self.receiver = receiver
             self.order_id = order_id
@@ -266,6 +274,8 @@ class SignedRequest(object):
             self.country = country
             self.created_time = created_time
             self.updated_time = updated_time
+            self.error_code = error_code
+            self.error_message = error_message
 
     class Page(object):
         """
