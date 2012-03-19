@@ -245,7 +245,7 @@ class SignedRequest(object):
 
         def __init__(self, buyer=None, receiver=None, order_id=None,
                      order_info=None, order_details=None, status=None,
-                     id=None, from=None, to=None, amount=None, 
+                     id=None, fromm=None, to=None, amount=None, 
                      application=None, country=None, created_time=None, 
                      updated_time=None):
             self.buyer = buyer
@@ -255,7 +255,7 @@ class SignedRequest(object):
             self.order_details = order_details
             self.status = status
             self.id = id
-            self.from = from
+            self.fromm = fromm
             self.to = to
             self.amount = amount
             self.application = application
