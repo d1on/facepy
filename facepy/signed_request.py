@@ -222,7 +222,7 @@ class SignedRequest(object):
         id = None
         """An integer describing the id of the order"""
 
-        from = None
+        fromm = None
         """An integer describing the UID of the buyer"""
 
         to = None
