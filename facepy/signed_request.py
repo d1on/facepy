@@ -100,19 +100,19 @@ class SignedRequest(object):
 
             # Populate page data
             credits = cls.Credits(
-                buyer = psr['credits'].get('buyer')
-                receiver = psr['credits'].get('receiver')
-                order_id = psr['credits'].get('order_id')
-                order_info = psr['credits'].get('order_info')
-                order_details = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits']
-                status = psr['credits'].get('status')
-                id = psr['credits'].get('id')
-                from = psr['credits'].get('from')
-                to = psr['credits'].get('to')
-                amount = psr['credits'].get('amount')
-                application = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits']
-                country = psr['credits'].get('country')
-                created_time = psr['credits'].get('created_time')
+                buyer = psr['credits'].get('buyer'),
+                receiver = psr['credits'].get('receiver'),
+                order_id = psr['credits'].get('order_id'),
+                order_info = psr['credits'].get('order_info'),
+                order_details = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits'],
+                status = psr['credits'].get('status'),
+                id = psr['credits'].get('id'),
+                from = psr['credits'].get('from'),
+                to = psr['credits'].get('to'),
+                amount = psr['credits'].get('amount'),
+                application = json.loads(psr['credits']['order_details']) if 'order_details' in psr['credits'],
+                country = psr['credits'].get('country'),
+                created_time = psr['credits'].get('created_time'),
                 updated_time = psr['credits'].get('updated_time')
             ) if 'credits' in psr else None,
 
